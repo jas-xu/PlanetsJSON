@@ -1,0 +1,147 @@
+<!--
+    Name: Jason Xu
+    Student #: 991545529
+    Date: March 18, 2020
+    Professor: Ronak Sheth
+    SYST2444 Assignment 2
+        Load convert planets.xml to planets.json and then load the data into a table.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'/>
+        <script type='text/javascript' src='jquery.js'>
+        </script>
+
+        <title>SYST2444 Assignment 2</title>
+        <header>
+            <h1>SYST2444 Assignment 2</h1>
+        </header>
+
+        <style>
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            th, td {
+                border: 1px solid;
+                text-align: left;
+            }
+
+        </style>
+
+        <script>
+            $(document).ready(function(){
+                $.getJSON('planets.json', function(data){
+                    // initialize variables for HTML output
+                    var names = '';
+                    var distance = '';
+                    var radius = '';
+                    var loY = '';
+                    var day = '';
+                    var mass = '';
+                    var density = '';
+                    var satelliteName = '';
+                    var distanceFromPlanet = '';
+                    var orbit = '';
+                    var satelliteName2 = '';
+                    var distanceFromPlanet2 = '';
+                    var orbit2 = '';
+
+                    // for loop iterates through every planet in the PLANETS array
+                    for (var i = 0; i < data.SOLAR_SYSTEM.PLANETS.PLANET.length; i++) {
+                        // appends name, distance, radius, year, day, mass, and density into string variables for HTML output
+                        names += data.SOLAR_SYSTEM.PLANETS.PLANET[i].NAME + '<br>'
+                        distance += data.SOLAR_SYSTEM.PLANETS.PLANET[i].DISTANCE + '<br>';
+                        radius += data.SOLAR_SYSTEM.PLANETS.PLANET[i].RADIUS + '<br>';
+                        loY += data.SOLAR_SYSTEM.PLANETS.PLANET[i].LENGTH_OF_YEAR + '<br>';
+                        day += data.SOLAR_SYSTEM.PLANETS.PLANET[i].DAY + '<br>';
+                        mass += data.SOLAR_SYSTEM.PLANETS.PLANET[i].MASS + '<br>';
+                        density += data.SOLAR_SYSTEM.PLANETS.PLANET[i].DENSITY + '<br>';
+
+                        // checks if the PLANET object has any satellites and 
+                        // makes corresponding values blank if no satellites
+                        if (data.SOLAR_SYSTEM.PLANETS.PLANET[i].SATELLITES == undefined) {
+                            satelliteName += '<br>';
+                            distanceFromPlanet += '<br>';
+                            orbit += '<br>';
+                            satelliteName2 += '<br>';
+                            distanceFromPlanet2 += '<br>';
+                            orbit2 += '<br>';
+                        } else {
+                            // appends values for HTML output if there are 2 satellites
+                            if (data.SOLAR_SYSTEM.PLANETS.PLANET[i].SATELLITES.SATELLITE.length == 2) {
+                                satelliteName += data.SOLAR_SYSTEM.PLANETS.PLANET[i].SATELLITES.SATELLITE[0].NAME + '<br>';
+                                distanceFromPlanet += data.SOLAR_SYSTEM.PLANETS.PLANET[i].SATELLITES.SATELLITE[0].DISTANCE_FROM_PLANET + '<br>';
+                                orbit += data.SOLAR_SYSTEM.PLANETS.PLANET[i].SATELLITES.SATELLITE[0].ORBIT + '<br>';
+                                satelliteName2 += data.SOLAR_SYSTEM.PLANETS.PLANET[i].SATELLITES.SATELLITE[1].NAME + '<br>';
+                                distanceFromPlanet2 += data.SOLAR_SYSTEM.PLANETS.PLANET[i].SATELLITES.SATELLITE[1].DISTANCE_FROM_PLANET + '<br>';
+                                orbit2 += data.SOLAR_SYSTEM.PLANETS.PLANET[i].SATELLITES.SATELLITE[1].ORBIT + '<br>';
+                            } else { // appends values for HTML output if there is only 1 satellite
+                                satelliteName += data.SOLAR_SYSTEM.PLANETS.PLANET[i].SATELLITES.SATELLITE.NAME + '<br>';
+                                distanceFromPlanet += data.SOLAR_SYSTEM.PLANETS.PLANET[i].SATELLITES.SATELLITE.DISTANCE_FROM_PLANET + '<br>';
+                                orbit += data.SOLAR_SYSTEM.PLANETS.PLANET[i].SATELLITES.SATELLITE.ORBIT + '<br>';
+                                satelliteName2 += '<br>';
+                                distanceFromPlanet2 += '<br>';
+                                orbit2 += '<br>';
+                            }
+                        }
+                    }
+                    // outputs values to HTML
+                    $('#name').html(names);
+                    $('#distance').html(distance);
+                    $('#radius').html(radius);
+                    $('#lengthOfYear').html(loY);
+                    $('#day').html(day);
+                    $('#mass').html(mass);
+                    $('#density').html(density);
+                    $('#satelliteName').html(satelliteName);
+                    $('#distanceFromPlanet').html(distanceFromPlanet);
+                    $('#orbit').html(orbit);
+                    $('#satelliteName2').html(satelliteName2);
+                    $('#distanceFromPlanet2').html(distanceFromPlanet2);
+                    $('#orbit2').html(orbit2);
+                })
+            })
+        </script>
+
+    </head>
+    <body>
+        <p></p>
+        <table>
+            <tr>
+                <th>Planet Name</th>
+                <th>Distance</th>
+                <th>Radius</th>
+                <th>Length of Year</th>
+                <th>Day</th>
+                <th>Mass</th>
+                <th>Density</th>
+                <th>Satellite Name</th>
+                <th>Distance From Planet</th>
+                <th>Orbit</th>
+                <th>Satellite Name 2</th>
+                <th>Distance From Planet 2</th>
+                <th>Orbit 2</th>
+            </tr>
+            <tr>
+                <th id='name'></th>
+                <td id='distance'></td>
+                <td id='radius'></td>
+                <td id='lengthOfYear'></td>
+                <td id='day'></td>
+                <td id='mass'></td>
+                <td id='density'></td>
+                <td id='satelliteName'></td>
+                <td id='distanceFromPlanet'></td>
+                <td id='orbit'></td>
+                <td id='satelliteName2'></td>
+                <td id='distanceFromPlanet2'></td>
+                <td id='orbit2'></td>
+            </tr>
+        </table>
+        <br>
+        <footer>Jason Xu 991545529, Sheridan College - Trafalgar</footer>
+    </body>
+
+</html>

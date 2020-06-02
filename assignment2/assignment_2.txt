@@ -1,0 +1,9 @@
+Requirements:
+1) You can use online XML to JSON converter utility
+http://www.utilities-online.info/xmltojson/#.WWvY6XEpDIW
+
+2) Your application must load planets.json file and output all the data (including Satellites) into a table.
+
+3)You need to add your personal info (Name and student number ) in Footer
+
+4) You must include the URL in the comments section of assignment 3 folder on SLATE. Also provide username password if you have set it .
